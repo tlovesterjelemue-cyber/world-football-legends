@@ -10,15 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    container:
+      image: pspdev/pspdev:latest
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Install PSP development tools
+      - name: Compile PSP program
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential cmake git
-          git clone --depth 1 https://github.com/pspdev/pspdev.git /tmp/pspdev
-          cd /tmp/pspdev
-          git submodule update --init --recursive
-          make
+          cd "$GITHUB_WORKSPACE"
+          psp-gcc -I"$PSPDEV/psp/sdk/include" \
+            -c main.c -o main.o
