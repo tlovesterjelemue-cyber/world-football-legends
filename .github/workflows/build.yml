@@ -17,10 +17,17 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Build PSP application
+      - name: Check project files
         run: |
-          cd "$GITHUB_WORKSPACE"
-          make
+          echo "Current directory:"
+          pwd
+          echo "Files in project:"
+          ls -la
+          echo "Checking Makefile:"
+          test -f Makefile
+
+      - name: Build PSP application
+        run: make
 
       - name: Upload PSP application
         uses: actions/upload-artifact@v4
