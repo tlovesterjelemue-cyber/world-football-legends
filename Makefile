@@ -8,7 +8,7 @@ ASFLAGS = $(CFLAGS)
 
 LIBDIR =
 LDFLAGS =
-LIBS =
+LIBS = -lpspgum -lpspgu -lm
 
 BUILD_PRX = 1
 EXTRA_TARGETS = EBOOT.PBP
